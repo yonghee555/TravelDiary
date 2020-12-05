@@ -44,7 +44,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(diaryList.get(position)));
+                Intent intent = new Intent(context, ShowDiary.class);
                 context.startActivity(intent);
             }
         });
