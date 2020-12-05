@@ -22,6 +22,7 @@ public class ShowDiary extends AppCompatActivity {
     TextView name;
     EditText description;
     ImageView imageView;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +32,26 @@ public class ShowDiary extends AppCompatActivity {
         name = (TextView) findViewById(R.id.textView8);
         description = (EditText) findViewById(R.id.editTextTextMultiLine2);
         imageView = (ImageView) findViewById(R.id.imageView);
+        button = (Button) findViewById(R.id.button_map);
 
         Intent intent = getIntent();
-        String n = "여행지 이름 : " + intent.getStringExtra("name");
-        name.setText(n);
+        String n = intent.getStringExtra("name");
+        name.setText("여행지 이름 : " + n);
         description.append(intent.getStringExtra("description"));
-
         setImage(intent.getByteArrayExtra("img"));
+        String latitude = intent.getStringExtra("latitude");
+        String longitude = intent.getStringExtra("longitude");
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),MapsActivity.class);
+                intent.putExtra("latitude", latitude);
+                intent.putExtra("longitude", longitude);
+                intent.putExtra("name", n);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setImage(byte[] image){
