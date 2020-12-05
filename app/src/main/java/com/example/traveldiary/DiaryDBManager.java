@@ -57,29 +57,4 @@ public class DiaryDBManager extends SQLiteOpenHelper {
     public int delete(String whereClause, String[] whereArgs) {
         return getWritableDatabase().delete(DIARY_TABLE, whereClause, whereArgs);
     }
-
-    public byte[] getImage(Bitmap bitmap){
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, os);
-        byte[] data = os.toByteArray();
-        return data;
-    }
-
-    public Boolean insertImage(String x, Integer i){
-        SQLiteDatabase db = this.getWritableDatabase();
-        try{
-            FileInputStream fs = new FileInputStream(x);
-            byte[] imgbyte = new byte[fs.available()];
-            fs.read(imgbyte);
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("id", i);
-            contentValues.put("img", imgbyte);
-            db.insert("image", null, contentValues);
-            fs.close();
-            return true;
-        }catch (IOException e){
-            e.printStackTrace();
-            return false;
-        }
-    }
 }

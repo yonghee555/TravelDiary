@@ -45,8 +45,6 @@ public class WriteDiary extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
             Uri uri = data.getData();
-            String x = getPath(uri);
-
             try{
                 InputStream is = getContentResolver().openInputStream(uri);
                 picture = BitmapFactory.decodeStream(is);
@@ -54,19 +52,6 @@ public class WriteDiary extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-    }
-
-    public String getPath(Uri uri){
-        if(uri == null)
-            return null;
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor c = managedQuery(uri, projection, null, null, null);
-        if(c != null){
-            int column_index = c.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            c.moveToFirst();
-            return c.getString(column_index);
-        }
-        return uri.getPath();
     }
 
     public byte[] getImage(Bitmap bitmap){
