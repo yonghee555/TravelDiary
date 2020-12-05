@@ -23,13 +23,13 @@ public class TravelList extends AppCompatActivity {
         myLayoutManager = new LinearLayoutManager(this);
         myRecyclerView.setLayoutManager(myLayoutManager);
 
-        String[] columns = new String[]{"name", "description", "latitude", "longitude"};
+        String[] columns = new String[]{"name", "description", "latitude", "longitude", "img"};
         Cursor c = getContentResolver().query(MyContentProvider.CONTENT_URI, columns, null,
                 null, null, null);
         ArrayList<Diary> diaryList = new ArrayList<>();
         if(c!= null){
             while(c.moveToNext()){
-                diaryList.add(new Diary(c.getString(0), c.getString(1), c.getString(2), c.getString(3)));
+                diaryList.add(new Diary(c.getString(0), c.getString(1), c.getString(2), c.getString(3), c.getBlob(4)));
             }
             c.close();
         }

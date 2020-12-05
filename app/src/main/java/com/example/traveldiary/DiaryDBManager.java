@@ -5,6 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class DiaryDBManager extends SQLiteOpenHelper {
 
@@ -12,7 +18,7 @@ public class DiaryDBManager extends SQLiteOpenHelper {
     static final String DIARY_TABLE = "Diary";
     Context context = null;
     private static DiaryDBManager dbManager = null;
-    static final String CREATE_DB = " CREATE TABLE " + DIARY_TABLE + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + " name TEXT NOT NULL, description TEXT NOT NULL, latitude TEXT, longitude TEXT);";
+    static final String CREATE_DB = " CREATE TABLE " + DIARY_TABLE + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + " name TEXT NOT NULL, description TEXT NOT NULL, latitude TEXT, longitude TEXT, img BLOB);";
 
     public static DiaryDBManager getInstance(Context context) {
         if (dbManager == null) {
@@ -50,5 +56,30 @@ public class DiaryDBManager extends SQLiteOpenHelper {
 
     public int delete(String whereClause, String[] whereArgs) {
         return getWritableDatabase().delete(DIARY_TABLE, whereClause, whereArgs);
+    }
+
+    public byte[] getImage(Bitmap bitmap){
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, os);
+        byte[] data = os.toByteArray();
+        return data;
+    }
+
+    public Boolean insertImage(String x, Integer i){
+        SQLiteDatabase db = this.getWritableDatabase();
+        try{
+            FileInputStream fs = new FileInputStream(x);
+            byte[] imgbyte = new byte[fs.available()];
+            fs.read(imgbyte);
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("id", i);
+            contentValues.put("img", imgbyte);
+            db.insert("image", null, contentValues);
+            fs.close();
+            return true;
+        }catch (IOException e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }

@@ -5,12 +5,14 @@ public class Diary {
     String description;
     String latitude;
     String longitude;
+    byte[] img;
 
-    public Diary(String name, String description, String latitude, String longitude) {
+    public Diary(String name, String description, String latitude, String longitude, byte[] img) {
         this.name = name;
         this.description = description;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.img = img;
     }
 
     public String getLatitude() {
@@ -27,5 +29,9 @@ public class Diary {
 
     public String getName() {
         return name;
+    }
+
+    public byte[] getImg() {
+        return img;
     }
 }

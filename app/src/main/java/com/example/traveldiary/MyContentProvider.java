@@ -14,6 +14,7 @@ public class MyContentProvider extends ContentProvider {
     static final String DESCRIPTION = "description";
     static final String LATITUDE = "latitude";
     static final String LONGITUDE = "longitude";
+    static final String IMG = "img";
 
     public DiaryDBManager dbManager;
 

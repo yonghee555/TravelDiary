@@ -49,6 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 intent.putExtra("description", diaryList.get(position).getDescription());
                 intent.putExtra("latitude", diaryList.get(position).getLatitude());
                 intent.putExtra("longitude", diaryList.get(position).getLongitude());
+                intent.putExtra("img", diaryList.get(position).getImg());
 
                 context.startActivity(intent);
             }
