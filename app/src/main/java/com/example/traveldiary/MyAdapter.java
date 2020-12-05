@@ -23,9 +23,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
     }
 
-    private ArrayList<String> diaryList;
+    private ArrayList<Diary> diaryList;
 
-    MyAdapter(ArrayList<String> diaryList) {
+    MyAdapter(ArrayList<Diary> diaryList) {
         this.diaryList = diaryList;
     }
 
@@ -38,13 +38,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyAdapter.MyViewHolder holder, final int position) {
         MyViewHolder myViewHolder = (MyViewHolder) holder;
-        myViewHolder.myText.setText(diaryList.get(position));
+        myViewHolder.myText.setText(diaryList.get(position).getName());
 
         myViewHolder.myText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
                 Intent intent = new Intent(context, ShowDiary.class);
+                intent.putExtra("name", diaryList.get(position).getName());
+                intent.putExtra("description", diaryList.get(position).getDescription());
+                intent.putExtra("latitude", diaryList.get(position).getLatitude());
+                intent.putExtra("longitude", diaryList.get(position).getLongitude());
+
                 context.startActivity(intent);
             }
         });
