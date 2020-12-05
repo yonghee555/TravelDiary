@@ -49,7 +49,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markerOptions.snippet("지금 있는 곳");
         mMap.addMarker(markerOptions);
         mMap.getUiSettings().setZoomGesturesEnabled(true);
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(place));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(7));
     }
 }
