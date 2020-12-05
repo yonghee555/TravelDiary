@@ -30,6 +30,7 @@ public class ShowDiary extends AppCompatActivity {
 
         name = (TextView) findViewById(R.id.textView8);
         description = (EditText) findViewById(R.id.editTextTextMultiLine2);
+        imageView = (ImageView) findViewById(R.id.imageView);
 
         Intent intent = getIntent();
         String n = "여행지 이름 : " + intent.getStringExtra("name");

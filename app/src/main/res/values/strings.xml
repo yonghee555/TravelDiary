@@ -11,4 +11,5 @@
     <string name="latitude">위도</string>
     <string name="longitude">경도</string>
     <string name="button_save">일기 저장</string>
+    <string name="button_map">위치 보기</string>
 </resources>
