@@ -29,7 +29,7 @@ public class TravelList extends AppCompatActivity {
         ArrayList<Diary> diaryList = new ArrayList<>();
         if(c!= null){
             while(c.moveToNext()){
-                diaryList.add(new Diary(c.getString(0), c.getString(1), c.getString(2), c.getString(3), c.getBlob(4)));
+                diaryList.add(new Diary(c.getString(0), c.getString(1), c.getDouble(2), c.getDouble(3), c.getBlob(4)));
             }
             c.close();
         }

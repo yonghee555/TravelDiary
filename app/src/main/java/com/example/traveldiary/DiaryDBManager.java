@@ -18,7 +18,7 @@ public class DiaryDBManager extends SQLiteOpenHelper {
     static final String DIARY_TABLE = "Diary";
     Context context = null;
     private static DiaryDBManager dbManager = null;
-    static final String CREATE_DB = " CREATE TABLE " + DIARY_TABLE + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + " name TEXT NOT NULL, description TEXT NOT NULL, latitude TEXT, longitude TEXT, img BLOB);";
+    static final String CREATE_DB = " CREATE TABLE " + DIARY_TABLE + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + " name TEXT NOT NULL, description TEXT NOT NULL, latitude REAL, longitude REAL, img BLOB);";
 
     public static DiaryDBManager getInstance(Context context) {
         if (dbManager == null) {

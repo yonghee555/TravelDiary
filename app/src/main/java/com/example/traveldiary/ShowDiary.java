@@ -39,8 +39,8 @@ public class ShowDiary extends AppCompatActivity {
         name.setText("여행지 이름 : " + n);
         description.append(intent.getStringExtra("description"));
         setImage(intent.getByteArrayExtra("img"));
-        String latitude = intent.getStringExtra("latitude");
-        String longitude = intent.getStringExtra("longitude");
+        Double latitude = intent.getDoubleExtra("latitude", 0);
+        Double longitude = intent.getDoubleExtra("longitude", 0);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

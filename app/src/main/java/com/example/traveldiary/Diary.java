@@ -3,11 +3,11 @@ package com.example.traveldiary;
 public class Diary {
     String name;
     String description;
-    String latitude;
-    String longitude;
+    Double latitude;
+    Double longitude;
     byte[] img;
 
-    public Diary(String name, String description, String latitude, String longitude, byte[] img) {
+    public Diary(String name, String description, Double latitude, Double longitude, byte[] img) {
         this.name = name;
         this.description = description;
         this.latitude = latitude;
@@ -15,11 +15,11 @@ public class Diary {
         this.img = img;
     }
 
-    public String getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public String getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
